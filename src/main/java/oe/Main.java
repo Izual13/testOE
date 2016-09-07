@@ -11,17 +11,16 @@ public class Main {
 
     private static final String SEPARATOR_SIGN = "_";
     private SecureRandom random = new SecureRandom();
+    private static final int mb = 1024 * 1024;
     final String longString = new BigInteger(100, random).toString(10);
 
     public static void main(String[] args) {
-        int mb = 1024 * 1024;
         Runtime runtime = Runtime.getRuntime();
 
-        IntStream.range(0, 20000).forEach(value -> {
+        IntStream.range(0, 20000).forEach(i -> {
             new Main().start();
-            System.out.println("Used Memory [" + value + "]:" + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+            System.out.println("Used Memory [" + i + "]: " + (runtime.totalMemory() - runtime.freeMemory()) / mb);
         });
-
     }
 
     private void start() {
